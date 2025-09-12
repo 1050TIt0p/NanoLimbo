@@ -32,6 +32,7 @@ import ua.nanit.limbo.connection.PacketHandler;
 import ua.nanit.limbo.connection.PacketSnapshots;
 import ua.nanit.limbo.world.DimensionRegistry;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Locale;
 import java.util.concurrent.ScheduledFuture;
@@ -47,8 +48,6 @@ public final class LimboServer {
 
     private EventLoopGroup bossGroup;
     private EventLoopGroup workerGroup;
-
-    private CommandManager commandManager;
 
     public LimboConfig getConfig() {
         return config;
@@ -66,12 +65,8 @@ public final class LimboServer {
         return dimensionRegistry;
     }
 
-    public CommandManager getCommandManager() {
-        return commandManager;
-    }
-
-    public void start() throws Exception {
-        config = new LimboConfig(Paths.get("./"));
+    public void start(Path path) throws Exception {
+        config = new LimboConfig(path);
         config.load();
 
         Log.setLevel(config.getDebugLevel());
@@ -93,10 +88,6 @@ public final class LimboServer {
         Runtime.getRuntime().addShutdownHook(new Thread(this::stop, "NanoLimbo shutdown thread"));
 
         Log.info("Server started on %s", config.getAddress());
-
-        commandManager = new CommandManager();
-        commandManager.registerAll(this);
-        commandManager.start();
 
         System.gc();
     }
