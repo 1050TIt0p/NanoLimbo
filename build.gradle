@@ -2,6 +2,7 @@ plugins {
     id "java"
     id "com.gradleup.shadow" version "8.3.9"
     id "com.github.gmazzo.buildconfig" version "5.6.8"
+    id "maven-publish"
 }
 
 group "ua.nanit"
@@ -53,4 +54,12 @@ shadowJar {
     }
 
     minimize()
+}
+
+publishing {
+    publications {
+        NanoLimbo(MavenPublication) {
+            artifact shadowJar
+        }
+    }
 }
