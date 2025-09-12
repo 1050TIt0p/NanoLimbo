@@ -1,5 +1,24 @@
 ## NanoLimbo
 
+<details>
+  <summary>Purpose of this fork</summary>
+
+This fork was created primarily for my BungeeCord authentication plugin — [tiAuth](https://github.com/1050TIt0p/tiAuth).
+
+Changes:
+- Removed commands.
+- Logger modified (removed, only `slf4j-api` retained) because BungeeCord already has its own implementation, which conflicts with `ch.qos.logback`.
+- Added the ability to change the configuration file path.
+- Removed the main class — the fork cannot run independently.
+- Some libraries (`slf4j-api`, `netty`, etc.) are marked as `compileOnly` since they are already provided by BungeeCord.
+
+Usage:
+```java
+Path limboPath = getDataFolder().toPath().resolve("limbo");
+new LimboServer().start(limboPath);
+```
+</details>
+
 This is a lightweight Minecraft limbo server, written in Java with Netty.
 The main goal of this project is maximum simplicity with a minimum number of sent and processed packets.
 The limbo is empty; there is no ability to set a schematic building since this is not necessary.
