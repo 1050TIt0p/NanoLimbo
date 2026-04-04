@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("maven-publish")
     alias(libs.plugins.shadow)
     alias(libs.plugins.buildconfig)
 }
@@ -63,15 +64,13 @@ tasks.shadowJar {
     archiveClassifier.set("")
     archiveVersion.set("")
 
-    manifest {
-        attributes(
-            mapOf(
-                "Main-Class" to "ua.nanit.limbo.NanoLimbo"
-            )
-        )
-    }
+    minimize()
+}
 
-    minimize {
-        exclude(dependency("ch.qos.logback:logback-classic:.*:.*"))
+publishing {
+    publications {
+        create<MavenPublication>("NanoLimbo") {
+            artifact(tasks.shadowJar)
+        }
     }
 }
