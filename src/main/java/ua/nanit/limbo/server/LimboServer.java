@@ -28,6 +28,7 @@ import ua.nanit.limbo.connection.PacketHandler;
 import ua.nanit.limbo.connection.PacketSnapshots;
 import ua.nanit.limbo.world.DimensionRegistry;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
@@ -44,8 +45,8 @@ public final class LimboServer {
     private EventLoopGroup bossGroup;
     private EventLoopGroup workerGroup;
 
-    public void start() throws Exception {
-        config = new LimboConfig(Paths.get("./"));
+    public void start(Path path) throws Exception {
+        config = new LimboConfig(path);
         config.load();
 
         Log.setLevel(config.getDebugLevel());
