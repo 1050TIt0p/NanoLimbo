@@ -12,26 +12,26 @@ repositories {
 }
 
 dependencies {
-    implementation(libs.logback.classic)
+    compileOnly(libs.slf4j.api)
     implementation(libs.configurate.yaml)
 
-    implementation(libs.netty.handler)
-    implementation(variantOf(libs.netty.transport.native.epoll) { classifier("linux-x86_64") })
-    implementation(variantOf(libs.netty.transport.native.epoll) { classifier("linux-aarch_64") })
-    implementation(variantOf(libs.netty.transport.native.io.uring) { classifier("linux-x86_64") })
-    implementation(variantOf(libs.netty.transport.native.io.uring) { classifier("linux-aarch_64") })
-    implementation(variantOf(libs.netty.transport.native.kqueue) { classifier("osx-x86_64") })
-    implementation(variantOf(libs.netty.transport.native.kqueue) { classifier("osx-aarch_64") })
+    compileOnly(libs.netty.handler)
+    compileOnly(variantOf(libs.netty.transport.native.epoll) { classifier("linux-x86_64") })
+    compileOnly(variantOf(libs.netty.transport.native.epoll) { classifier("linux-aarch_64") })
+    compileOnly(variantOf(libs.netty.transport.native.io.uring) { classifier("linux-x86_64") })
+    compileOnly(variantOf(libs.netty.transport.native.io.uring) { classifier("linux-aarch_64") })
+    compileOnly(variantOf(libs.netty.transport.native.kqueue) { classifier("osx-x86_64") })
+    compileOnly(variantOf(libs.netty.transport.native.kqueue) { classifier("osx-aarch_64") })
 
-    implementation(libs.kyori.adventure.api)
-    implementation(libs.kyori.adventure.text.serializer.gson)
-    implementation(libs.kyori.adventure.text.serializer.legacy)
-    implementation(libs.kyori.adventure.text.serializer.json.legacy.impl)
-    implementation(libs.kyori.adventure.text.serializer.plain)
-    implementation(libs.kyori.adventure.text.serializer.minimessage)
-    implementation(libs.kyori.adventure.nbt)
+    compileOnly(libs.kyori.adventure.api)
+    compileOnly(libs.kyori.adventure.text.serializer.gson)
+    compileOnly(libs.kyori.adventure.text.serializer.legacy)
+    compileOnly(libs.kyori.adventure.text.serializer.json.legacy.impl)
+    compileOnly(libs.kyori.adventure.text.serializer.plain)
+    compileOnly(libs.kyori.adventure.text.serializer.minimessage)
+    compileOnly(libs.kyori.adventure.nbt)
 
-    implementation(libs.gson)
+    compileOnly(libs.gson)
 
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)

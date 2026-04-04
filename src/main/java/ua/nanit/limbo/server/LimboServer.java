@@ -44,8 +44,6 @@ public final class LimboServer {
     private EventLoopGroup bossGroup;
     private EventLoopGroup workerGroup;
 
-    private CommandManager commandManager;
-
     public void start() throws Exception {
         config = new LimboConfig(Paths.get("./"));
         config.load();
@@ -71,10 +69,6 @@ public final class LimboServer {
         Runtime.getRuntime().addShutdownHook(new Thread(this::stop, "NanoLimbo shutdown thread"));
 
         Log.info("Server started on %s", config.getAddress());
-
-        commandManager = new CommandManager();
-        commandManager.registerAll(this);
-        commandManager.start();
 
         System.gc();
     }
